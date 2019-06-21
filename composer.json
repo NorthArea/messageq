@@ -1,5 +1,5 @@
 {
-  "name":"MQ",
+  "name":"northarea/mq",
   "description": "Библиотека для работы с сервером очередей",
   "type": "library",
   "config": {
