@@ -1,0 +1,24 @@
+{
+  "name":"MQ",
+  "description": "Библиотека для работы с сервером очередей",
+  "type": "library",
+  "config": {
+    "process-timeout":0
+  },
+  "scripts": {
+    "test": "phpunit --bootstrap vendor/autoload.php tests",
+    "test-coverage": "phpunit --bootstrap vendor/autoload.php tests --coverage-html ./log/report --whitelist ./src"
+  },
+  "autoload": {
+    "psr-4": {
+      "MQ\\": "src/"
+    }
+  },
+  "require": {
+    "php-amqplib/php-amqplib": "^2.9"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.1"
+  }
+}
+    
