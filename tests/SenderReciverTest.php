@@ -1,7 +1,7 @@
 <?php
-use MQ\Sender;
-use MQ\Reciver;
-use MQ\Connection;
+use Mq\Sender;
+use Mq\Reciver;
+use Mq\Connection;
 
 class SenderReciverTest extends PHPUnit\Framework\TestCase {
     public function test_connect() {

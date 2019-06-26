@@ -1,7 +1,7 @@
-<?php namespace MQ;
+<?php namespace Mq;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
-abstract class MQ {
+abstract class Mq {
     protected $channel;
     protected $connection;
 

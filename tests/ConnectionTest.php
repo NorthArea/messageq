@@ -1,5 +1,5 @@
 <?php
-use MQ\Connection;
+use Mq\Connection;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 class ConnectionTest extends PHPUnit\Framework\TestCase {

@@ -1,7 +1,7 @@
-<?php namespace MQ;
-use MQ\MQ;
+<?php namespace Mq;
+use Mq\Mq;
 
-class Reciver extends MQ {
+class Reciver extends Mq {
     /**
      * Recive Message
      *

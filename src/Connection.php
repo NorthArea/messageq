@@ -1,4 +1,4 @@
-<?php namespace MQ;
+<?php namespace Mq;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 
 class Connection {

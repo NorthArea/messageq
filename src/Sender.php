@@ -1,8 +1,8 @@
-<?php namespace MQ;
-use MQ\MQ;
+<?php namespace Mq;
+use Mq\Mq;
 use PhpAmqpLib\Message\AMQPMessage;
 
-class Sender extends MQ {
+class Sender extends Mq {
 
     /**
      * Send Message
