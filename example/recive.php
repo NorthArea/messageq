@@ -1,27 +1,32 @@
 <?php require_once __DIR__ . '/../vendor/autoload.php';
 
-$config = require_once('config.php');
+use MessageQ\Reciver;
 
-use Mq\Sender;
-use Mq\Reciver;
-use Mq\Connection;
+$config = require_once(__DIR__."/config.php");
 
-$connection = new Connection($config['host'], $config['port'], $config['user'], $config['pwd']);
-$reciver = new Reciver($connection);
+$reciver = new Reciver([
+    "connection" => [
+        "host"      => $config['host'],
+        "port"      => $config['port'],
+        "user"      => $config['user'],
+        "password"  => $config['pwd']
+    ],
+    "queue" => [
+        "name"      => "test",
+        "durable"   => true
+    ]
+]);
 
-//Принять одно сообщение
-$reciver->reciveMessage("test", false, function($msg) {
-    echo "Message: ".$msg->body;
+$recivedMessage = null;
+
+//Once
+$reciver->recive(function($msg) use(&$recivedMessage){
+    $recivedMessage = $msg->body;
+    echo $recivedMessage;
+    $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
 });
 
-//$str = new Object();
-//Принять одно сообщение 2
-//$reciver->reciveMessage("test", false, function($msg) use($str) {
-//    var_dump($str);
-//    echo "Message: ".$msg->body;
-//});
-
-//Слушает порт
-//$reciver->reciveMessage("test", true, function($msg) {
-//    echo "Message: ".$msg->body;
-//});
+/* $reciver->recive(function($msg) use($recivedMessage){
+    $recivedMessage = $msg->body;
+    $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
+},true); */

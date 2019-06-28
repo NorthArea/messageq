@@ -1,2 +1,2 @@
-# MQ
+# MessageQ
 Message Queue

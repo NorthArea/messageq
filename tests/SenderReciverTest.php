@@ -1,36 +1,61 @@
 <?php
-use Mq\Sender;
-use Mq\Reciver;
-use Mq\Connection;
+use MessageQ\Sender;
+use MessageQ\Reciver;
 
 class SenderReciverTest extends PHPUnit\Framework\TestCase {
-    public function test_connect() {
-        $config = require(__DIR__.'/../example/config.php');
-        $connection = new Connection($config['host'], $config['port'], $config['user'], $config['pwd']);
-        $this->assertInstanceOf(Connection::class, $connection);
-        return $connection;
+
+    public function test_config(){
+        $config = require_once(__DIR__."/../example/config.php");
+        $this->assertTrue(in_array("host", array_keys($config)));
+        return $config;
     }
 
     /**
-     * @depends test_connect
+     * @depends test_config
      */
-    public function test_sendMessage($connection) {
-        $sender = new Sender($connection);
-        $this->assertTrue($sender->sendMessage("test", "test"));
+    public function test_send($config){
+        $sender = new Sender([
+            "connection" => [
+                "host"      => $config['host'],
+                "port"      => $config['port'],
+                "user"      => $config['user'],
+                "password"  => $config['pwd']
+            ],
+            "queue" => [
+                "name"      => "test",
+                "durable"   => true
+            ]
+        ]);
+        $this->assertTrue($sender->send("test"));
+        $sender = null;
+        return $config;
     }
 
     /**
-     * @depends test_connect
+     * @depends test_send
      */
-    public function test_reciveMessage($connection) {
-        $reciver = new Reciver($connection);
+    public function test_recive($config){
+        $reciver = new Reciver([
+            "connection" => [
+                "host"      => $config['host'],
+                "port"      => $config['port'],
+                "user"      => $config['user'],
+                "password"  => $config['pwd']
+            ],
+            "queue" => [
+                "name"      => "test",
+                "durable"   => true
+            ]
+        ]);
+        
+        $recivedMessage = null;
 
-        $test = false;
-
-        $reciver->reciveMessage("test", false, function($msg) use(&$test) {
-            $test = true;
+        $reciver->recive(function($msg) use(&$recivedMessage){
+            $recivedMessage = $msg->body;
+            $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
         });
 
-        $this->assertTrue($test);
+        $this->assertTrue($recivedMessage == "test");
+        $reciver = null;
     }
 }

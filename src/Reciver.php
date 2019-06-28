@@ -1,28 +1,19 @@
-<?php namespace Mq;
-use Mq\Mq;
+<?php namespace MessageQ;
 
-class Reciver extends Mq {
-    /**
-     * Recive Message
-     *
-     * @param string $queueName
-     * @param boolean $reconnect Durable connection
-     * @param Callable $callback
-     * @return void
-     */
-    public function reciveMessage(string $queueName, bool $reconnect = false, Callable $callback) {
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
 
-        $this->channel->queue_declare($queueName, true, false, false, false);
+class Reciver extends AbstractHandler {
+    public function recive(Callable $callback, bool $reconnect = false){
+        $this->channel->basic_qos(null, 1, null);
+        $this->channel->basic_consume($this->queue, '', false, false, false, false, $callback);
 
-        $this->channel->basic_consume($queueName, '', false, true, false, false, $callback);
-
+        $this->channel->wait();
+        
         if($reconnect){
             while (count($this->channel->callbacks)) {
                 $this->channel->wait();
             }
-        } else {
-            $this->channel->wait();
         }
     }
-
 }

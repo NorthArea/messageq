@@ -1,11 +1,24 @@
 <?php require_once __DIR__ . '/../vendor/autoload.php';
 
-$config = require_once('config.php');
+use MessageQ\Sender;
 
-use Mq\Sender;
-use Mq\Reciver;
-use Mq\Connection;
+$config = require_once(__DIR__."/config.php");
 
-$connection = new Connection($config['host'], $config['port'], $config['user'], $config['pwd']);
-$sender = new Sender($connection);
-$sender->sendMessage("test", "test");
+$sender = new Sender([
+    "connection" => [
+        "host"      => $config['host'],
+        "port"      => $config['port'],
+        "user"      => $config['user'],
+        "password"  => $config['pwd']
+    ],
+    "queue" => [
+        "name"      => "test",
+        "durable"   => true
+    ]
+]);
+
+while(true){
+    $sender->send("test");
+    echo "Send message\n";
+    sleep(4);
+}
