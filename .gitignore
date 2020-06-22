@@ -1,5 +1,3 @@
-#Vendor
-/vendor/*
+/.idea
+/vendor
 /example/config.php
-/composer.lock
-/others

@@ -1,7 +1,10 @@
 <?php
+declare(strict_types=1);
+
 return [
-    "host"  =>"",
-    "port"  =>,
-    "user"  =>"",
-    "pwd"   =>""
+    "host" => "",
+    "user" => "",
+    "password" => "",
+    "port_amqp" => ,
+    "port_http" =>
 ];
