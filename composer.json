@@ -25,6 +25,7 @@
       "Test\\": "test/"
     }
   },
+  "license": ["MIT"],
   "require": {
     "php-amqplib/php-amqplib": "^2.9",
     "php": ">=7.1",
