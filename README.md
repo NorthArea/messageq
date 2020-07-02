@@ -1,5 +1,5 @@
 # northarea/php-amqp
-Обертка для работы с библиотекой php-amqp
+## Обертка для работы с библиотекой php-amqp
 
 ```bash
 #AMQP
