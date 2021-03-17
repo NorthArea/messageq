@@ -1,6 +1,6 @@
 # northarea/messageq
 ## Обертка для удобной работы с RabbitMQ
-
+- PHP 8
 ## Примеры:
 ./example/*
 ## Документация:

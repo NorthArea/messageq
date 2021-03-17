@@ -1,6 +1,6 @@
 {
-  "name": "northarea/php-amqp",
-  "description": "Библиотека для работы с rabbitMQ с возможностью подключаться без расширения bcmath через http",
+  "name": "northarea/messgeq",
+  "description": "Библиотека - обертка для удобной работы с rabbitMQ",
   "type": "library",
   "authors": [
     {
@@ -14,7 +14,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Northarea\\PhpAmqp\\": "src/"
+      "Northarea\\MessageQ\\": "src/",
+      "Northarea\\Contracts\\": "contracts/"
     },
     "classmap": [
       "src"
@@ -25,14 +26,15 @@
       "Test\\": "test/"
     }
   },
-  "license": ["MIT"],
+  "license": [
+    "MIT"
+  ],
   "require": {
-    "php-amqplib/php-amqplib": "^2.9",
-    "php": ">=7.1",
-    "ext-json": "*",
-    "ext-curl": "*"
+    "php-amqplib/php-amqplib": "3.0.0-rc2",
+    "php": ">=7.4",
+    "ext-json": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8.4"
+    "phpunit/phpunit": "^9.5"
   }
 }
