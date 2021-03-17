@@ -1,10 +1,2 @@
 <?php
-declare(strict_types=1);
-
-return [
-    "host" => "",
-    "user" => "",
-    "password" => "",
-    "port_amqp" => ,
-    "port_http" =>
-];
+return ['localhost', 5672, 'guest', 'guest'];
