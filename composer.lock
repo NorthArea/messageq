@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "100ee810aab85a659605389b625c4482",
+    "content-hash": "5d4a1712bdc111c77d514264b1c179ba",
     "packages": [
         {
             "name": "paragonie/constant_time_encoding",
@@ -125,22 +125,22 @@
         },
         {
             "name": "php-amqplib/php-amqplib",
-            "version": "v3.0.0-rc2",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-amqplib/php-amqplib.git",
-                "reference": "12d094b325564306610ced32bee0815219377607"
+                "reference": "c0a8eade209b7e43d6a405303d8de716dfd02749"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/12d094b325564306610ced32bee0815219377607",
-                "reference": "12d094b325564306610ced32bee0815219377607",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/c0a8eade209b7e43d6a405303d8de716dfd02749",
+                "reference": "c0a8eade209b7e43d6a405303d8de716dfd02749",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "ext-sockets": "*",
-                "php": ">=7.0",
+                "php": "^7.0|~8.0.0",
                 "phpseclib/phpseclib": "^2.0|^3.0"
             },
             "conflict": {
@@ -200,9 +200,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-amqplib/php-amqplib/issues",
-                "source": "https://github.com/php-amqplib/php-amqplib/tree/v3.0.0-rc2"
+                "source": "https://github.com/php-amqplib/php-amqplib/tree/v3.0.0"
             },
-            "time": "2021-03-09T14:57:39+00:00"
+            "time": "2021-03-16T15:00:23+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -2411,13 +2411,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "php-amqplib/php-amqplib": 5
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.4"
+        "php": ">=7.4",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
